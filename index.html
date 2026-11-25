@@ -1,0 +1,392 @@
+<!doctype html>
+<html lang="en">
+<head>
+<meta charset="utf-8">
+<meta name="viewport" content="width=device-width, initial-scale=1">
+<title>ltsboot — patches for Spring Boot lines past open source support</title>
+<meta name="description" content="ltsboot keeps Spring Boot lines patched after their open source support ends. Same APIs, same packages, Apache-2.0.">
+<meta property="og:title" content="ltsboot">
+<meta property="og:description" content="Open source support ended. Your patches don’t have to.">
+<meta property="og:image" content="https://ltsboot.org/assets/ltsboot-logo.png">
+<link rel="icon" type="image/png" href="assets/favicon.png">
+<link rel="canonical" href="https://ltsboot.org/">
+<link rel="preconnect" href="https://fonts.googleapis.com">
+<link href="https://fonts.googleapis.com/css2?family=Inter:wght@400;500;600&amp;family=Space+Grotesk:wght@500;600;700&amp;family=JetBrains+Mono:wght@400;500;600&amp;display=swap" rel="stylesheet">
+<style>
+body{margin:0;background:#FFFFFF}
+a{color:#0A1241}a:hover{color:#B45F06}
+.lb-grid{background-image:linear-gradient(rgba(255,255,255,0.045) 1px,transparent 1px),linear-gradient(90deg,rgba(255,255,255,0.045) 1px,transparent 1px);background-size:48px 48px}
+.lb-dots{background-image:radial-gradient(rgba(10,18,65,0.10) 1px,transparent 1px);background-size:24px 24px}
+.lb-dark a{color:#FFFFFF}.lb-dark a:hover{color:#FFC27A}
+details summary{cursor:pointer;list-style:none}
+details summary::-webkit-details-marker{display:none}
+</style>
+<style>
+.lb-tab{min-height:44px;padding:0 18px;border-radius:8px;border:1px solid #E4E7F0;font:600 15px Inter,sans-serif;cursor:pointer;background:transparent;color:#3A4270}
+.lb-tab[aria-pressed="true"]{background:#0A1241;color:#FFFFFF;border-color:transparent}
+[data-panel][hidden]{display:none}
+</style>
+</head>
+<body>
+<div style="font-family: Inter, system-ui, sans-serif; color: #0A1241; background: #FFFFFF; font-size: 16px; line-height: 1.6">
+
+<div class="lb-dark lb-grid" style="background-color: #0A1241; color: #FFFFFF">
+<header>
+<div style="max-width: 1200px; margin: 0 auto; padding: 20px 24px; display: flex; flex-wrap: wrap; align-items: center; justify-content: space-between; gap: 16px">
+<a href="#top" style="display: flex; align-items: center; gap: 12px; text-decoration: none">
+<span style="display: flex; width: 44px; height: 44px; border-radius: 10px; background: #FFFFFF; align-items: center; justify-content: center">
+<img src="assets/ltsboot-logo.png" alt="ltsboot logo" style="width: 38px; height: 38px; object-fit: contain">
+</span>
+<span style="font-family: 'Space Grotesk', sans-serif; font-weight: 700; font-size: 22px; letter-spacing: -0.02em">ltsboot</span>
+</a>
+<nav aria-label="Main" style="display: flex; flex-wrap: wrap; align-items: center; gap: 8px 28px; font-size: 15px; font-weight: 500">
+<a href="#lines" style="text-decoration: none; padding: 10px 0">Lines</a>
+<a href="#start" style="text-decoration: none; padding: 10px 0">Get started</a>
+<a href="#process" style="text-decoration: none; padding: 10px 0">How fixes ship</a>
+<a href="#faq" style="text-decoration: none; padding: 10px 0">FAQ</a>
+<a href="https://github.com/ltsboot" style="display: inline-flex; align-items: center; gap: 8px; text-decoration: none; padding: 10px 18px; border: 1.5px solid rgba(255,255,255,0.5); border-radius: 8px">
+<svg aria-hidden="true" width="18" height="18" viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="2" stroke-linecap="round" stroke-linejoin="round"><path d="M9 19c-4.3 1.4-4.3-2.5-6-3m12 5v-3.5c0-1 .1-1.4-.5-2 2.8-.3 5.5-1.4 5.5-6a4.6 4.6 0 0 0-1.3-3.2 4.2 4.2 0 0 0-.1-3.2s-1.1-.3-3.5 1.3a12.3 12.3 0 0 0-6.2 0C6.5 2.8 5.4 3.1 5.4 3.1a4.2 4.2 0 0 0-.1 3.2A4.6 4.6 0 0 0 4 9.5c0 4.6 2.7 5.7 5.5 6-.6.6-.6 1.2-.5 2V21"/></svg>
+GitHub</a>
+</nav>
+</div>
+</header>
+
+<section id="top">
+<div style="max-width: 1200px; margin: 0 auto; padding: 72px 24px 56px; display: flex; flex-wrap: wrap; gap: 56px; align-items: center">
+<div style="flex: 1 1 540px; min-width: 0; display: flex; flex-direction: column; gap: 26px">
+<p style="margin: 0; display: inline-flex; align-self: flex-start; align-items: center; gap: 10px; padding: 6px 14px; border: 1px solid rgba(243,154,43,0.5); border-radius: 999px; font-family: 'JetBrains Mono', monospace; font-size: 13px; color: #FFC27A">
+<span aria-hidden="true" style="width: 8px; height: 8px; border-radius: 50%; background: #F39A2B"></span>
+Open source · Apache-2.0 · Boot 2.7 now, 3.5 next</p>
+<h1 style="margin: 0; font-family: 'Space Grotesk', sans-serif; font-weight: 700; font-size: clamp(42px, 5.6vw, 72px); line-height: 1.02; letter-spacing: -0.035em">Open source support ended.<br><span style="color: #F39A2B">Your patches don’t have to.</span></h1>
+<p style="margin: 0; font-size: 19px; line-height: 1.6; max-width: 33em; color: #C9CEE8">ltsboot keeps Spring Boot lines patched after their open source support ends: Boot, Framework, Security and the Data modules they bring. Same APIs, same packages. Upgrade on your schedule, not an attacker’s.</p>
+<div style="display: flex; flex-wrap: wrap; gap: 12px; padding-top: 6px">
+<a href="#start" style="display: inline-flex; align-items: center; gap: 10px; min-height: 52px; padding: 0 26px; border-radius: 10px; background: #F39A2B; color: #0A1241; font-weight: 600; text-decoration: none">Add it to your build
+<svg aria-hidden="true" width="18" height="18" viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="2.2" stroke-linecap="round" stroke-linejoin="round"><path d="M5 12h14M13 6l6 6-6 6"/></svg></a>
+<a href="#lines" style="display: inline-flex; align-items: center; min-height: 52px; padding: 0 26px; border-radius: 10px; border: 1.5px solid rgba(255,255,255,0.45); font-weight: 600; text-decoration: none">See supported lines</a>
+</div>
+</div>
+
+<div style="flex: 1 1 440px; min-width: 0; background: #050A28; border: 1px solid #26306A; border-radius: 16px; overflow: hidden; box-shadow: 0 30px 80px rgba(0,0,0,0.35)">
+<div style="display: flex; align-items: center; gap: 8px; padding: 14px 18px; border-bottom: 1px solid #26306A">
+<span aria-hidden="true" style="width: 11px; height: 11px; border-radius: 50%; background: #3A4378"></span>
+<span aria-hidden="true" style="width: 11px; height: 11px; border-radius: 50%; background: #3A4378"></span>
+<span aria-hidden="true" style="width: 11px; height: 11px; border-radius: 50%; background: #3A4378"></span>
+<span style="margin-left: 10px; font-family: 'JetBrains Mono', monospace; font-size: 13px; color: #AEB6DA">pom.xml — the whole migration</span>
+</div>
+<div style="padding: 18px 0; font-family: 'JetBrains Mono', monospace; font-size: 13.5px; line-height: 1.75; overflow-x: auto">
+<div style="padding: 0 20px; color: #8D96C4; white-space: pre">  &lt;parent&gt;…spring-boot-starter-parent 2.7.18…&lt;/parent&gt;</div>
+<div style="padding: 0 20px; color: #8D96C4; white-space: pre">  &lt;dependencyManagement&gt;&lt;dependencies&gt;</div>
+<div style="padding: 0 20px; background: rgba(243,154,43,0.12); color: #FFD9A8; white-space: pre">+   &lt;dependency&gt;</div>
+<div style="padding: 0 20px; background: rgba(243,154,43,0.12); color: #FFD9A8; white-space: pre">+     &lt;groupId&gt;io.github.ltsboot&lt;/groupId&gt;</div>
+<div style="padding: 0 20px; background: rgba(243,154,43,0.12); color: #FFD9A8; white-space: pre">+     &lt;artifactId&gt;lts-dependencies&lt;/artifactId&gt;</div>
+<div style="padding: 0 20px; background: rgba(243,154,43,0.12); color: #FFD9A8; white-space: pre">+     &lt;version&gt;2.7.18.1&lt;/version&gt;</div>
+<div style="padding: 0 20px; background: rgba(243,154,43,0.12); color: #FFD9A8; white-space: pre">+     &lt;type&gt;pom&lt;/type&gt;&lt;scope&gt;import&lt;/scope&gt;</div>
+<div style="padding: 0 20px; background: rgba(243,154,43,0.12); color: #FFD9A8; white-space: pre">+   &lt;/dependency&gt;</div>
+<div style="padding: 0 20px; color: #8D96C4; white-space: pre">  &lt;/dependencies&gt;&lt;/dependencyManagement&gt;</div>
+</div>
+<div style="display: flex; flex-wrap: wrap; gap: 8px 20px; padding: 14px 20px; border-top: 1px solid #26306A; font-family: 'JetBrains Mono', monospace; font-size: 12.5px; color: #AEB6DA">
+<span>0 imports changed</span><span>0 lines of code</span><span>same APIs</span>
+</div>
+</div>
+</div>
+</section>
+
+<section aria-labelledby="timeline-title">
+<div style="max-width: 1200px; margin: 0 auto; padding: 8px 24px 76px; display: flex; flex-direction: column; gap: 22px">
+<h2 id="timeline-title" style="margin: 0; font-family: 'JetBrains Mono', monospace; font-size: 13px; font-weight: 500; letter-spacing: 0.08em; color: #AEB6DA">WHERE OPEN SOURCE SUPPORT STOPS, LTSBOOT PICKS UP</h2>
+<div style="display: flex; flex-wrap: wrap; gap: 12px 24px; align-items: center">
+<span style="flex: 0 0 88px; font-family: 'Space Grotesk', sans-serif; font-weight: 700; font-size: 20px">Boot 2.7</span>
+<div style="flex: 1 1 600px; min-width: 0; display: grid; grid-template-columns: repeat(4, minmax(0, 1fr)); height: 44px; border-radius: 10px; overflow: hidden; font-family: 'JetBrains Mono', monospace; font-size: 12.5px">
+<div style="display: flex; align-items: center; padding: 0 12px; background: #26306A; color: #D9DDF0">May 2022 · 2.7.0</div>
+<div style="display: flex; align-items: center; padding: 0 12px; background: #26306A; color: #D9DDF0; border-left: 1px solid #0A1241">Jun 2023 · OSS support ends</div>
+<div style="display: flex; align-items: center; padding: 0 12px; background: #3A2333; color: #FFB4AE; border-left: 1px solid #0A1241">Nov 2023 · 2.7.18, last OSS</div>
+<div style="display: flex; align-items: center; padding: 0 12px; background: #F39A2B; color: #0A1241; font-weight: 600">ltsboot 2.7.18.x</div>
+</div>
+</div>
+<div style="display: flex; flex-wrap: wrap; gap: 12px 24px; align-items: center">
+<span style="flex: 0 0 88px; font-family: 'Space Grotesk', sans-serif; font-weight: 700; font-size: 20px">Boot 3.5</span>
+<div style="flex: 1 1 600px; min-width: 0; display: grid; grid-template-columns: repeat(4, minmax(0, 1fr)); height: 44px; border-radius: 10px; overflow: hidden; font-family: 'JetBrains Mono', monospace; font-size: 12.5px">
+<div style="display: flex; align-items: center; padding: 0 12px; background: #26306A; color: #D9DDF0">May 2025 · 3.5.0</div>
+<div style="display: flex; align-items: center; padding: 0 12px; background: #26306A; color: #D9DDF0; border-left: 1px solid #0A1241">Jun 2026 · OSS support ends</div>
+<div style="display: flex; align-items: center; padding: 0 12px; background: #3A2333; color: #FFB4AE; border-left: 1px solid #0A1241">Fixes only in 4.x or paid</div>
+<div style="display: flex; align-items: center; padding: 0 12px; border: 1.5px dashed #F39A2B; border-radius: 0 10px 10px 0; color: #FFC27A; font-weight: 600">ltsboot 3.5 · planned</div>
+</div>
+</div>
+</div>
+</section>
+</div>
+
+<section id="why">
+<div style="max-width: 1200px; margin: 0 auto; padding: 104px 24px 96px; display: flex; flex-direction: column; gap: 48px">
+<div style="display: flex; flex-direction: column; gap: 14px; max-width: 44em">
+<p style="margin: 0; font-family: 'JetBrains Mono', monospace; font-size: 13px; letter-spacing: 0.08em; color: #B45F06">WHY LTSBOOT</p>
+<h2 style="margin: 0; font-family: 'Space Grotesk', sans-serif; font-size: clamp(32px, 3.6vw, 46px); line-height: 1.08; letter-spacing: -0.025em">When a line goes out of support, you have three options.</h2>
+</div>
+<div style="display: grid; grid-template-columns: repeat(auto-fit, minmax(300px, 1fr)); gap: 20px; align-items: stretch">
+<div style="border: 1px solid #E4E7F0; border-radius: 16px; padding: 32px; display: flex; flex-direction: column; gap: 16px; background: #FFFFFF">
+<p style="margin: 0; font-family: 'JetBrains Mono', monospace; font-size: 13px; color: #5A6290">OPTION A</p>
+<h3 style="margin: 0; font-family: 'Space Grotesk', sans-serif; font-size: 24px">Jump to the next major now</h3>
+<ul style="margin: 0; padding-left: 20px; display: flex; flex-direction: column; gap: 8px; color: #3A4270">
+<li>New Java baseline, removed APIs, library upgrades</li>
+<li>Regression testing across every service</li>
+<li>Right, eventually. Rarely quick.</li>
+</ul>
+</div>
+<div style="border: 1px solid #E4E7F0; border-radius: 16px; padding: 32px; display: flex; flex-direction: column; gap: 16px; background: #FFFFFF">
+<p style="margin: 0; font-family: 'JetBrains Mono', monospace; font-size: 13px; color: #5A6290">OPTION B</p>
+<h3 style="margin: 0; font-family: 'Space Grotesk', sans-serif; font-size: 24px">Stay put, unpatched</h3>
+<ul style="margin: 0; padding-left: 20px; display: flex; flex-direction: column; gap: 8px; color: #3A4270">
+<li>No work today</li>
+<li>Every new advisory for your line stays open</li>
+<li>Scanners and auditors keep flagging it</li>
+</ul>
+</div>
+<div style="border: 2px solid #0A1241; border-radius: 16px; padding: 32px; display: flex; flex-direction: column; gap: 16px; background: #0A1241; color: #FFFFFF">
+<p style="margin: 0; font-family: 'JetBrains Mono', monospace; font-size: 13px; color: #FFC27A">OPTION C</p>
+<h3 style="margin: 0; font-family: 'Space Grotesk', sans-serif; font-size: 24px">Stay put, patched</h3>
+<ul style="margin: 0; padding-left: 20px; display: flex; flex-direction: column; gap: 8px; color: #D9DDF0">
+<li>One BOM import, no code changes</li>
+<li>Security and critical fixes on the Java versions your line supports</li>
+<li>Time to plan the upgrade properly</li>
+</ul>
+<a href="#start" style="margin-top: auto; align-self: flex-start; display: inline-flex; align-items: center; min-height: 44px; padding: 0 20px; border-radius: 8px; background: #F39A2B; color: #0A1241; font-weight: 600; text-decoration: none">Get started</a>
+</div>
+</div>
+</div>
+</section>
+
+<section id="lines" style="background: #F5F6FA">
+<div style="max-width: 1200px; margin: 0 auto; padding: 96px 24px; display: flex; flex-direction: column; gap: 40px">
+<div style="display: flex; flex-direction: column; gap: 14px; max-width: 46em">
+<p style="margin: 0; font-family: 'JetBrains Mono', monospace; font-size: 13px; letter-spacing: 0.08em; color: #B45F06">SUPPORTED LINES</p>
+<h2 style="margin: 0; font-family: 'Space Grotesk', sans-serif; font-size: clamp(32px, 3.6vw, 46px); line-height: 1.08; letter-spacing: -0.025em">One project, one line at a time.</h2>
+<p style="margin: 0; font-size: 18px; color: #3A4270">Each release keeps the last public open source version as its base and adds a fourth number for the ltsboot patch level.</p>
+</div>
+<div style="display: grid; grid-template-columns: repeat(auto-fit, minmax(340px, 1fr)); gap: 24px">
+<div style="background: #FFFFFF; border: 1px solid #E4E7F0; border-radius: 16px; overflow: hidden; display: flex; flex-direction: column">
+<div style="display: flex; justify-content: space-between; align-items: center; gap: 12px; padding: 24px 28px; border-bottom: 1px solid #E4E7F0">
+<h3 style="margin: 0; font-family: 'Space Grotesk', sans-serif; font-size: 28px">Boot 2.7</h3>
+<span style="padding: 4px 12px; border-radius: 999px; background: #FFF1DE; color: #8A4A05; font-family: 'JetBrains Mono', monospace; font-size: 13px; font-weight: 600">First release [RELEASE DATE]</span>
+</div>
+<div style="padding: 8px 28px 24px; overflow-x: auto">
+<table style="width: 100%; border-collapse: collapse; font-size: 15px">
+<thead><tr style="text-align: left; color: #5A6290; font-size: 13px"><th scope="col" style="padding: 12px 0; font-weight: 600">Project</th><th scope="col" style="padding: 12px 0; font-weight: 600">OSS base</th><th scope="col" style="padding: 12px 0; font-weight: 600">ltsboot</th></tr></thead>
+<tbody style="font-family: 'JetBrains Mono', monospace">
+<tr style="border-top: 1px solid #EEF0F5"><td style="padding: 10px 0; font-family: Inter, sans-serif">Boot</td><td style="padding: 10px 0">2.7.18</td><td style="padding: 10px 0; color: #B45F06; font-weight: 600">2.7.18.x</td></tr>
+<tr style="border-top: 1px solid #EEF0F5"><td style="padding: 10px 0; font-family: Inter, sans-serif">Framework</td><td style="padding: 10px 0">5.3.39</td><td style="padding: 10px 0; color: #B45F06; font-weight: 600">5.3.39.x</td></tr>
+<tr style="border-top: 1px solid #EEF0F5"><td style="padding: 10px 0; font-family: Inter, sans-serif">Security</td><td style="padding: 10px 0">5.7.14</td><td style="padding: 10px 0; color: #B45F06; font-weight: 600">5.7.14.x</td></tr>
+<tr style="border-top: 1px solid #EEF0F5"><td style="padding: 10px 0; font-family: Inter, sans-serif">Data Commons, KeyValue, REST</td><td style="padding: 10px 0">2.7.18 / 3.7.18</td><td style="padding: 10px 0; color: #B45F06; font-weight: 600">.x</td></tr>
+</tbody>
+</table>
+</div>
+<div style="margin-top: auto; display: flex; flex-wrap: wrap; gap: 8px 20px; padding: 16px 28px; background: #FAFBFD; border-top: 1px solid #E4E7F0; font-size: 14px; color: #3A4270"><span>Java 8+ · tested on 8, 11, 17</span><span>javax.*</span></div>
+</div>
+<div style="background: #FFFFFF; border: 1.5px dashed #B9BFD8; border-radius: 16px; overflow: hidden; display: flex; flex-direction: column">
+<div style="display: flex; justify-content: space-between; align-items: center; gap: 12px; padding: 24px 28px; border-bottom: 1px solid #E4E7F0">
+<h3 style="margin: 0; font-family: 'Space Grotesk', sans-serif; font-size: 28px">Boot 3.5</h3>
+<span style="padding: 4px 12px; border-radius: 999px; background: #EEF0F7; color: #3A4270; font-family: 'JetBrains Mono', monospace; font-size: 13px; font-weight: 600">Planned</span>
+</div>
+<div style="padding: 24px 28px; display: flex; flex-direction: column; gap: 14px; color: #3A4270">
+<p style="margin: 0">Next line on the roadmap, with the same approach: Boot, Framework 6.2, Security 6.5 and the Data modules, based on the last public open source releases.</p>
+<p style="margin: 0">Want it sooner, or using it in production? <a href="https://github.com/ltsboot">Say so on GitHub</a>; it helps us prioritise.</p>
+</div>
+<div style="margin-top: auto; display: flex; flex-wrap: wrap; gap: 8px 20px; padding: 16px 28px; background: #FAFBFD; border-top: 1px solid #E4E7F0; font-size: 14px; color: #3A4270"><span>Java 17+</span><span>jakarta.*</span></div>
+</div>
+</div>
+<p style="margin: 0; font-size: 14px; color: #3A4270">Published under <code style="font-family: 'JetBrains Mono', monospace">io.github.ltsboot</code> on Maven Central, signed.</p>
+</div>
+</section>
+
+<section id="start" class="lb-dots" style="background-color: #FFFFFF">
+<div style="max-width: 1200px; margin: 0 auto; padding: 96px 24px; display: flex; flex-wrap: wrap; gap: 56px; align-items: flex-start">
+<div style="flex: 1 1 360px; min-width: 0; display: flex; flex-direction: column; gap: 18px">
+<p style="margin: 0; font-family: 'JetBrains Mono', monospace; font-size: 13px; letter-spacing: 0.08em; color: #B45F06">GET STARTED</p>
+<h2 style="margin: 0; font-family: 'Space Grotesk', sans-serif; font-size: clamp(32px, 3.6vw, 46px); line-height: 1.08; letter-spacing: -0.025em">Drop it in. Build as usual.</h2>
+<p style="margin: 0; font-size: 18px; color: #3A4270">The BOM pins the patched Spring artifacts and the fixed third-party versions. Gradle builds use the substitution plugin, which swaps the originals for the patched ones.</p>
+<div style="display: flex; flex-direction: column; gap: 10px; padding-top: 6px">
+<div style="display: flex; gap: 12px; align-items: baseline"><span style="font-family: 'JetBrains Mono', monospace; font-weight: 600; color: #B45F06">01</span><span>Pick your line and add the BOM or the plugin</span></div>
+<div style="display: flex; gap: 12px; align-items: baseline"><span style="font-family: 'JetBrains Mono', monospace; font-weight: 600; color: #B45F06">02</span><span>Run your tests: nothing else changes</span></div>
+<div style="display: flex; gap: 12px; align-items: baseline"><span style="font-family: 'JetBrains Mono', monospace; font-weight: 600; color: #B45F06">03</span><span>Bump the fourth number for each patch release</span></div>
+</div>
+</div>
+<div style="flex: 1 1 560px; min-width: 0; background: #FFFFFF; border: 1px solid #E4E7F0; border-radius: 16px; overflow: hidden; box-shadow: 0 20px 50px rgba(10,18,65,0.08)">
+<div style="display: flex; flex-wrap: wrap; justify-content: space-between; gap: 10px; padding: 10px; border-bottom: 1px solid #E4E7F0; background: #FAFBFD">
+<div role="group" aria-label="Spring Boot line" style="display: flex; gap: 4px">
+<button type="button" class="lb-tab" data-line="2.7">Boot 2.7</button>
+<button type="button" class="lb-tab" data-line="3.5">Boot 3.5</button>
+</div>
+<div role="group" aria-label="Build tool" style="display: flex; gap: 4px">
+<button type="button" class="lb-tab" data-tool="maven">Maven</button>
+<button type="button" class="lb-tab" data-tool="gradle">Gradle</button>
+</div>
+</div>
+<div data-panel="maven27">
+<pre style="margin: 0; padding: 24px; overflow-x: auto; font-family: 'JetBrains Mono', monospace; font-size: 14px; line-height: 1.75; color: #0A1241">&lt;dependencyManagement&gt;
+  &lt;dependencies&gt;
+    &lt;dependency&gt;
+      &lt;groupId&gt;io.github.ltsboot&lt;/groupId&gt;
+      &lt;artifactId&gt;lts-dependencies&lt;/artifactId&gt;
+      &lt;version&gt;2.7.18.1&lt;/version&gt;
+      &lt;type&gt;pom&lt;/type&gt;
+      &lt;scope&gt;import&lt;/scope&gt;
+    &lt;/dependency&gt;
+  &lt;/dependencies&gt;
+&lt;/dependencyManagement&gt;</pre>
+</div>
+<div data-panel="gradle27">
+<pre style="margin: 0; padding: 24px; overflow-x: auto; font-family: 'JetBrains Mono', monospace; font-size: 14px; line-height: 1.75; color: #0A1241">plugins {
+    id 'org.springframework.boot' version '2.7.18'
+    id 'io.github.ltsboot.substitution' version '[PLUGIN VERSION]'
+}
+
+ltsboot {
+    version = '2.7.18.1'
+}</pre>
+</div>
+<div data-panel="is35">
+<div style="padding: 40px 28px; display: flex; flex-direction: column; gap: 12px; align-items: flex-start">
+<p style="margin: 0; font-family: 'Space Grotesk', sans-serif; font-size: 22px; font-weight: 600">Boot 3.5 is planned.</p>
+<p style="margin: 0; color: #3A4270">The coordinates will follow the same pattern (<code style="font-family: 'JetBrains Mono', monospace">3.5.x.N</code>). Watch the GitHub organisation to hear when the first release is out.</p>
+<a href="https://github.com/ltsboot" style="display: inline-flex; align-items: center; min-height: 44px; padding: 0 20px; border-radius: 8px; border: 1.5px solid #0A1241; font-weight: 600; text-decoration: none">Watch on GitHub</a>
+</div>
+</div>
+</div>
+</div>
+</section>
+
+<section id="process" style="background: #F5F6FA">
+<div style="max-width: 1200px; margin: 0 auto; padding: 104px 24px 96px; display: flex; flex-direction: column; gap: 48px">
+<div style="display: flex; flex-wrap: wrap; gap: 24px; justify-content: space-between; align-items: flex-end">
+<div style="flex: 1 1 520px; min-width: 0; display: flex; flex-direction: column; gap: 14px">
+<p style="margin: 0; font-family: 'JetBrains Mono', monospace; font-size: 13px; letter-spacing: 0.08em; color: #B45F06">HOW A FIX SHIPS</p>
+<h2 style="margin: 0; font-family: 'Space Grotesk', sans-serif; font-size: clamp(32px, 3.6vw, 46px); line-height: 1.08; letter-spacing: -0.025em">Six gates between an advisory and your build.</h2>
+</div>
+<p style="flex: 1 1 340px; min-width: 0; margin: 0; color: #3A4270">Nothing reaches a release without a test that proves the hole and a person who signs off on the fix.</p>
+</div>
+<ol style="margin: 0; padding: 0; list-style: none; display: grid; grid-template-columns: repeat(auto-fit, minmax(170px, 1fr)); gap: 12px">
+<li style="border-top: 3px solid #0A1241; padding: 18px 4px 0; display: flex; flex-direction: column; gap: 8px">
+<span style="font-family: 'JetBrains Mono', monospace; font-size: 13px; color: #5A6290">1 · Advisory</span>
+<span style="font-weight: 600">Tracked daily</span>
+<span style="font-size: 14px; color: #3A4270">GitHub, OSV and NVD feeds for every managed dependency.</span>
+</li>
+<li style="border-top: 3px solid #0A1241; padding: 18px 4px 0; display: flex; flex-direction: column; gap: 8px">
+<span style="font-family: 'JetBrains Mono', monospace; font-size: 13px; color: #5A6290">2 · Triage</span>
+<span style="font-weight: 600">Does it apply?</span>
+<span style="font-size: 14px; color: #3A4270">Bump, backport, mitigation or not applicable, with the reason written down.</span>
+</li>
+<li style="border-top: 3px solid #0A1241; padding: 18px 4px 0; display: flex; flex-direction: column; gap: 8px">
+<span style="font-family: 'JetBrains Mono', monospace; font-size: 13px; color: #5A6290">3 · Failing test</span>
+<span style="font-weight: 600">Prove the hole first</span>
+<span style="font-size: 14px; color: #3A4270">A regression test that fails on the unpatched code.</span>
+</li>
+<li style="border-top: 3px solid #0A1241; padding: 18px 4px 0; display: flex; flex-direction: column; gap: 8px">
+<span style="font-family: 'JetBrains Mono', monospace; font-size: 13px; color: #5A6290">4 · Backport</span>
+<span style="font-weight: 600">From public fixes only</span>
+<span style="font-size: 14px; color: #3A4270">Ported to the line’s Java baseline; the full module suite must stay green.</span>
+</li>
+<li style="border-top: 3px solid #0A1241; padding: 18px 4px 0; display: flex; flex-direction: column; gap: 8px">
+<span style="font-family: 'JetBrains Mono', monospace; font-size: 13px; color: #5A6290">5 · Review</span>
+<span style="font-weight: 600">Independent and human</span>
+<span style="font-size: 14px; color: #3A4270">Root cause, attack vector and API compatibility, then maintainer approval.</span>
+</li>
+<li style="border-top: 3px solid #F39A2B; padding: 18px 4px 0; display: flex; flex-direction: column; gap: 8px">
+<span style="font-family: 'JetBrains Mono', monospace; font-size: 13px; color: #B45F06">6 · Release</span>
+<span style="font-weight: 600">Signed, on Maven Central</span>
+<span style="font-size: 14px; color: #3A4270">Every changed file listed in the changelog with its CVE.</span>
+</li>
+</ol>
+<div style="display: flex; flex-wrap: wrap; gap: 10px; padding-top: 8px">
+<span style="display: inline-flex; align-items: center; gap: 10px; padding: 10px 16px; background: #FFFFFF; border: 1px solid #E4E7F0; border-radius: 10px; font-size: 14px"><span style="min-width: 72px; font-family: 'JetBrains Mono', monospace; font-size: 12.5px; font-weight: 600; color: #B42318">CRITICAL</span>7 days after a public fix · 14 for our own</span>
+<span style="display: inline-flex; align-items: center; gap: 10px; padding: 10px 16px; background: #FFFFFF; border: 1px solid #E4E7F0; border-radius: 10px; font-size: 14px"><span style="min-width: 40px; font-family: 'JetBrains Mono', monospace; font-size: 12.5px; font-weight: 600; color: #B45F06">HIGH</span>30 days</span>
+<span style="display: inline-flex; align-items: center; gap: 10px; padding: 10px 16px; background: #FFFFFF; border: 1px solid #E4E7F0; border-radius: 10px; font-size: 14px"><span style="min-width: 56px; font-family: 'JetBrains Mono', monospace; font-size: 12.5px; font-weight: 600; color: #3A4270">MEDIUM</span>next release, about 90 days</span>
+<span style="display: inline-flex; align-items: center; gap: 10px; padding: 10px 16px; background: #FFFFFF; border: 1px solid #E4E7F0; border-radius: 10px; font-size: 14px"><span style="min-width: 36px; font-family: 'JetBrains Mono', monospace; font-size: 12.5px; font-weight: 600; color: #5A6290">LOW</span>best effort</span>
+</div>
+<p style="margin: -24px 0 0; font-size: 14px; color: #3A4270">Response targets, not guarantees. Fixes and critical bugs only, never new features.</p>
+</div>
+</section>
+
+<section id="faq">
+<div style="max-width: 880px; margin: 0 auto; padding: 104px 24px 96px; display: flex; flex-direction: column; gap: 32px">
+<h2 style="margin: 0; font-family: 'Space Grotesk', sans-serif; font-size: clamp(32px, 3.6vw, 46px); letter-spacing: -0.025em">Questions</h2>
+<div style="display: flex; flex-direction: column; border-top: 1px solid #E4E7F0">
+<details style="border-bottom: 1px solid #E4E7F0; padding: 22px 0">
+<summary style="font-family: 'Space Grotesk', sans-serif; font-size: 20px; font-weight: 600">Is ltsboot part of Spring or Broadcom?</summary>
+<p style="margin: 12px 0 0; color: #3A4270">No. It is an independent open source project. It uses only public open source code and is not affiliated with, endorsed by or sponsored by Broadcom Inc. or VMware.</p>
+</details>
+<details style="border-bottom: 1px solid #E4E7F0; padding: 22px 0">
+<summary style="font-family: 'Space Grotesk', sans-serif; font-size: 20px; font-weight: 600">Do I have to change my code or imports?</summary>
+<p style="margin: 12px 0 0; color: #3A4270">No. Package names and APIs are unchanged. You change build coordinates only, through the BOM or the Gradle plugin.</p>
+</details>
+<details style="border-bottom: 1px solid #E4E7F0; padding: 22px 0">
+<summary style="font-family: 'Space Grotesk', sans-serif; font-size: 20px; font-weight: 600">Which Java versions are supported?</summary>
+<p style="margin: 12px 0 0; color: #3A4270">The same as the original line. Boot 2.7: Java 8 and up, tested on 8, 11 and 17. Boot 3.5: Java 17 and up.</p>
+</details>
+<details style="border-bottom: 1px solid #E4E7F0; padding: 22px 0">
+<summary style="font-family: 'Space Grotesk', sans-serif; font-size: 20px; font-weight: 600">Which lines will you support next?</summary>
+<p style="margin: 12px 0 0; color: #3A4270">Lines whose open source support has ended and that are still widely used in production. Boot 3.5 is next. Support horizon per line: [SUPPORT HORIZON].</p>
+</details>
+<details style="border-bottom: 1px solid #E4E7F0; padding: 22px 0">
+<summary style="font-family: 'Space Grotesk', sans-serif; font-size: 20px; font-weight: 600">Is it a replacement for upgrading?</summary>
+<p style="margin: 12px 0 0; color: #3A4270">No. It buys you time to plan the upgrade while staying patched.</p>
+</details>
+<details style="border-bottom: 1px solid #E4E7F0; padding: 22px 0">
+<summary style="font-family: 'Space Grotesk', sans-serif; font-size: 20px; font-weight: 600">How much does it cost?</summary>
+<p style="margin: 12px 0 0; color: #3A4270">Nothing. Everything is Apache-2.0 and published on Maven Central.</p>
+</details>
+</div>
+</div>
+</section>
+
+<section id="security" class="lb-dark lb-grid" style="background-color: #0A1241; color: #FFFFFF">
+<div style="max-width: 1200px; margin: 0 auto; padding: 88px 24px; display: flex; flex-wrap: wrap; gap: 32px; align-items: center; justify-content: space-between">
+<div style="flex: 1 1 520px; min-width: 0; display: flex; flex-direction: column; gap: 14px">
+<p style="margin: 0; font-family: 'JetBrains Mono', monospace; font-size: 13px; letter-spacing: 0.08em; color: #FFC27A">SECURITY</p>
+<h2 style="margin: 0; font-family: 'Space Grotesk', sans-serif; font-size: clamp(30px, 3.2vw, 42px); line-height: 1.1; letter-spacing: -0.02em">Found a vulnerability? Tell us privately.</h2>
+<p style="margin: 0; font-size: 18px; color: #C9CEE8">Use GitHub private vulnerability reporting on the affected repository, or e-mail us. Issues that also affect current Spring releases are reported upstream through coordinated disclosure.</p>
+</div>
+<div style="display: flex; flex-wrap: wrap; gap: 12px">
+<a href="mailto:security@ltsboot.org?subject=%5Bltsboot%20security%5D" style="display: inline-flex; align-items: center; min-height: 52px; padding: 0 24px; border-radius: 10px; background: #F39A2B; color: #0A1241; font-weight: 600; text-decoration: none; font-family: 'JetBrains Mono', monospace">security@ltsboot.org</a>
+<a href="https://github.com/ltsboot/.github/blob/main/SECURITY.md" style="display: inline-flex; align-items: center; min-height: 52px; padding: 0 24px; border-radius: 10px; border: 1.5px solid rgba(255,255,255,0.45); font-weight: 600; text-decoration: none">Security policy</a>
+</div>
+</div>
+</section>
+
+<footer>
+<div style="max-width: 1200px; margin: 0 auto; padding: 44px 24px 60px; display: flex; flex-wrap: wrap; gap: 24px 48px; justify-content: space-between; font-size: 14px; color: #3A4270">
+<div style="flex: 1 1 520px; min-width: 0; display: flex; flex-direction: column; gap: 12px">
+<div style="display: flex; align-items: center; gap: 10px">
+<img src="assets/ltsboot-logo.png" alt="" style="width: 30px; height: 30px; object-fit: contain">
+<span style="font-family: 'Space Grotesk', sans-serif; font-weight: 700; font-size: 17px; color: #0A1241">ltsboot</span>
+<span style="font-family: 'JetBrains Mono', monospace; font-size: 13px; color: #5A6290">ltsboot.org</span>
+</div>
+<p style="margin: 0">ltsboot is an independent open source project licensed under Apache-2.0. It is not affiliated with, endorsed by or sponsored by Broadcom Inc. or VMware. Spring, Spring Boot, Spring Framework and Spring Security are trademarks of Broadcom Inc. and are used here only to describe compatibility.</p>
+</div>
+<nav aria-label="Footer" style="display: flex; flex-wrap: wrap; gap: 8px 28px; align-items: flex-start">
+<a href="https://github.com/ltsboot" style="padding: 6px 0">GitHub</a>
+<a href="https://github.com/ltsboot/.github/blob/main/SECURITY.md" style="padding: 6px 0">Security policy</a>
+<a href="mailto:security@ltsboot.org" style="padding: 6px 0">Contact</a>
+</nav>
+</div>
+</footer>
+
+</div>
+<script>
+(function () {
+  var state = { line: '2.7', tool: 'maven' };
+  function render() {
+    document.querySelectorAll('[data-line]').forEach(function (b) { b.setAttribute('aria-pressed', String(b.dataset.line === state.line)); });
+    document.querySelectorAll('[data-tool]').forEach(function (b) { b.setAttribute('aria-pressed', String(b.dataset.tool === state.tool)); });
+    var p = { maven27: state.line === '2.7' && state.tool === 'maven', gradle27: state.line === '2.7' && state.tool === 'gradle', is35: state.line === '3.5' };
+    document.querySelectorAll('[data-panel]').forEach(function (el) { el.hidden = !p[el.dataset.panel]; });
+  }
+  document.addEventListener('click', function (e) {
+    var b = e.target.closest('[data-line],[data-tool]');
+    if (!b) return;
+    if (b.dataset.line) state.line = b.dataset.line; else state.tool = b.dataset.tool;
+    render();
+  });
+  render();
+})();
+</script>
+</body>
+</html>
